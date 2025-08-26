@@ -268,4 +268,4 @@ This project is created for demonstration purposes and showcases Django web deve
 
 ---
 
-**Created with ❤️ for Indian travelers** 🇮🇳
+**❤️ Create By Sourav Ghosh** 🇮🇳
