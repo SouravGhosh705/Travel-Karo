@@ -3,7 +3,9 @@
 A comprehensive Django web application for booking flights, trains, and buses across India with Indian Rupee pricing and localized features.
 
 ## 🚀 Features Completed
-
+<br>
+<img width="1920" height="1080" alt="Screenshot (32)" src="https://github.com/user-attachments/assets/56477f31-cd47-4303-9b8c-6199a5e06e5c" />
+</br>
 ### ✅ Backend Features
 1. **User Management System**
    - Custom User model with Indian-specific fields (phone, Aadhaar, state, city)
@@ -17,7 +19,9 @@ A comprehensive Django web application for booking flights, trains, and buses ac
    - Real-time seat availability tracking
    - Pricing in Indian Rupees (₹) with proper formatting
    - Operator details and service numbers
-
+<br>
+<img width="1920" height="1080" alt="Screenshot (31)" src="https://github.com/user-attachments/assets/9d768fce-8384-4340-98cf-4a761af0284b" />
+</br>
 3. **Booking System**
    - Complete booking workflow with seat reservation
    - Automatic booking reference generation (TB format)
@@ -29,7 +33,7 @@ A comprehensive Django web application for booking flights, trains, and buses ac
    - Advanced search by source, destination, travel type, and date
    - Real-time availability checking
    - Results sorted by departure time
-
+   <img width="1920" height="1080" alt="Screenshot (34)" src="https://github.com/user-attachments/assets/44dcfef9-aa8b-4e14-95c6-06e7f5fb4cb5" />
 ### ✅ Frontend Features
 1. **Responsive Design**
    - Bootstrap 5 integration with Indian color theme (Orange, White, Green)
@@ -54,6 +58,8 @@ A comprehensive Django web application for booking flights, trains, and buses ac
    - 30 days of future travel data
    - Realistic pricing for different travel types
    - Major Indian operators (IndiGo, SpiceJet, Indian Railways, etc.)
+
+<img width="1920" height="1080" alt="Screenshot (36)" src="https://github.com/user-attachments/assets/2a621a74-7a3a-4399-932b-1483015f925b" />
 
 2. **Admin Interface**
    - Full Django admin integration for all models
