@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Travel Karo{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="bg-primary text-white rounded p-5 text-center">
+            <h1 class="display-4 mb-3">
+                <i class="bi bi-airplane"></i> Welcome to Travel Karo
+            </h1>
+            <p class="lead mb-4">
+                Book flights, trains, and buses across India with ease. 
+                Discover the beauty of India with our convenient travel solutions.
+            </p>
+            <a href="{% url 'travel:search' %}" class="btn btn-light btn-lg">
+                <i class="bi bi-search"></i> Start Your Journey
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Search Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="card shadow">
+            <div class="card-header">
+                <h3 class="mb-0"><i class="bi bi-search"></i> Quick Search</h3>
+            </div>
+            <div class="card-body">
+                <form method="get" action="{% url 'travel:search' %}">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label for="source" class="form-label">From</label>
+                            <select name="source" id="source" class="form-select">
+                                <option value="">Select departure city</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Chennai">Chennai</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Pune">Pune</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Jaipur">Jaipur</option>
+                                <option value="Goa">Goa</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="destination" class="form-label">To</label>
+                            <select name="destination" id="destination" class="form-select">
+                                <option value="">Select destination city</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Mumbai">Mumbai</option>
+                                <option value="Bangalore">Bangalore</option>
+                                <option value="Chennai">Chennai</option>
+                                <option value="Kolkata">Kolkata</option>
+                                <option value="Hyderabad">Hyderabad</option>
+                                <option value="Pune">Pune</option>
+                                <option value="Ahmedabad">Ahmedabad</option>
+                                <option value="Jaipur">Jaipur</option>
+                                <option value="Goa">Goa</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="travel_type" class="form-label">Travel Type</label>
+                            <select name="travel_type" id="travel_type" class="form-select">
+                                <option value="">All types</option>
+                                <option value="flight">Flight</option>
+                                <option value="train">Train</option>
+                                <option value="bus">Bus</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="date" class="form-label">Departure Date</label>
+                            <input type="date" name="date" id="date" class="form-control" min="{% now 'Y-m-d' %}">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">&nbsp;</label>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-search"></i> Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Why Choose Us?</h2>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="bi bi-shield-check text-primary display-4 mb-3"></i>
+                <h5 class="card-title">Secure Booking</h5>
+                <p class="card-text">
+                    Your bookings are secure with our encrypted payment system. 
+                    Book with confidence across India.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="bi bi-clock text-primary display-4 mb-3"></i>
+                <h5 class="card-title">24/7 Support</h5>
+                <p class="card-text">
+                    Our customer support team is available round the clock 
+                    to assist you with your travel needs.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 text-center">
+            <div class="card-body">
+                <i class="bi bi-currency-rupee text-primary display-4 mb-3"></i>
+                <h5 class="card-title">Best Prices</h5>
+                <p class="card-text">
+                    Get the best deals on flights, trains, and buses. 
+                    Compare prices and choose what suits you best.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Popular Routes Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Popular Routes</h2>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card travel-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h6 class="card-title">
+                            <i class="bi bi-airplane-fill text-primary"></i> Delhi to Mumbai
+                        </h6>
+                        <p class="card-text text-muted small">Popular business route</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="rupee">Starting from ₹3,500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card travel-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h6 class="card-title">
+                            <i class="bi bi-train-front-fill text-primary"></i> Mumbai to Bangalore
+                        </h6>
+                        <p class="card-text text-muted small">Tech hub connection</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="rupee">Starting from ₹800</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card travel-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h6 class="card-title">
+                            <i class="bi bi-bus-front-fill text-primary"></i> Delhi to Jaipur
+                        </h6>
+                        <p class="card-text text-muted small">Golden Triangle route</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="rupee">Starting from ₹500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card travel-card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <h6 class="card-title">
+                            <i class="bi bi-airplane-fill text-primary"></i> Chennai to Hyderabad
+                        </h6>
+                        <p class="card-text text-muted small">South India connection</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="rupee">Starting from ₹2,800</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if not user.is_authenticated %}
+<!-- Call to Action -->
+<div class="row">
+    <div class="col-12">
+        <div class="bg-light rounded p-4 text-center">
+            <h3 class="mb-3">Ready to Start Your Journey?</h3>
+            <p class="mb-4">Register now to book and manage your travel across India.</p>
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-2">
+                <i class="bi bi-person-plus"></i> Register Now
+            </a>
+            <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

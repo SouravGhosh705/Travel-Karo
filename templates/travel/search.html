@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Travel Options - Travel Karo{% endblock %}
+
+{% block content %}
+<!-- Search Form -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3><i class="bi bi-search"></i> Search Travel Options</h3>
+            </div>
+            <div class="card-body">
+                <form method="get">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label for="source" class="form-label">From</label>
+                            <select name="source" id="source" class="form-select">
+                                <option value="">All cities</option>
+                                {% for city_code, city_name in cities %}
+                                    <option value="{{ city_code }}" {% if search_params.source == city_code %}selected{% endif %}>
+                                        {{ city_name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="destination" class="form-label">To</label>
+                            <select name="destination" id="destination" class="form-select">
+                                <option value="">All cities</option>
+                                {% for city_code, city_name in cities %}
+                                    <option value="{{ city_code }}" {% if search_params.destination == city_code %}selected{% endif %}>
+                                        {{ city_name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="travel_type" class="form-label">Travel Type</label>
+                            <select name="travel_type" id="travel_type" class="form-select">
+                                <option value="">All types</option>
+                                {% for type_code, type_name in travel_types %}
+                                    <option value="{{ type_code }}" {% if search_params.travel_type == type_code %}selected{% endif %}>
+                                        {{ type_name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" name="date" id="date" class="form-control" 
+                                   value="{{ search_params.date }}" min="{% now 'Y-m-d' %}">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">&nbsp;</label>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-search"></i> Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Results -->
+<div class="row">
+    <div class="col-12">
+        {% if travel_options %}
+            <h4>Found {{ travel_options|length }} travel options</h4>
+            
+            {% for option in travel_options %}
+                <div class="card travel-card mb-3">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <div class="text-center">
+                                    {% if option.travel_type == 'flight' %}
+                                        <i class="bi bi-airplane-fill text-primary display-6"></i>
+                                    {% elif option.travel_type == 'train' %}
+                                        <i class="bi bi-train-front-fill text-primary display-6"></i>
+                                    {% else %}
+                                        <i class="bi bi-bus-front-fill text-primary display-6"></i>
+                                    {% endif %}
+                                    <div class="small text-muted">{{ option.get_travel_type_display }}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="mb-1">{{ option.source }}</h6>
+                                <small class="text-muted">{{ option.departure_datetime|date:"d/m/Y H:i" }}</small>
+                            </div>
+                            <div class="col-md-1 text-center">
+                                <i class="bi bi-arrow-right"></i>
+                                <div class="small text-muted">{{ option.get_duration }}</div>
+                            </div>
+                            <div class="col-md-3">
+                                <h6 class="mb-1">{{ option.destination }}</h6>
+                                <small class="text-muted">
+                                    {% if option.arrival_datetime %}
+                                        {{ option.arrival_datetime|date:"d/m/Y H:i" }}
+                                    {% else %}
+                                        Arrival time TBA
+                                    {% endif %}
+                                </small>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="text-center">
+                                    <h5 class="rupee mb-1">{{ option.get_formatted_price }}</h5>
+                                    <small class="text-muted">{{ option.available_seats }} seats left</small>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <a href="{% url 'travel:detail' pk=option.pk %}" class="btn btn-primary btn-sm w-100">
+                                    View
+                                </a>
+                            </div>
+                        </div>
+                        
+                        {% if option.operator_name %}
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <small class="text-muted">
+                                        <i class="bi bi-building"></i> {{ option.operator_name }}
+                                        {% if option.service_number %}
+                                            - {{ option.service_number }}
+                                        {% endif %}
+                                    </small>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+            
+        {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-search display-1 text-muted"></i>
+                <h4>No travel options found</h4>
+                <p class="text-muted">Try adjusting your search criteria or check for different dates.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
